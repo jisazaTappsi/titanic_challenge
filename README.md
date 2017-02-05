@@ -15,8 +15,8 @@ used extensively to import transform, filter and group data.
 Has kmodes algorithm to cluster records together according to similarities between them.
 The difference between kmeans and kmodes is that the first one is used for numerical values while the second one for 
 categorical values. For this particular problem the characteristics shared by a family (eg last_name, ticket, Cabin etc.)
-happen to be all categorical. The Fare was the only numerical variable involved but switching to k-prototypes to
-include a mix type problem involve too much CPU power, as the optimal number of clusters was high at 230.
+happen to be all categorical. The "Fare" was the only numerical variable involved but switching to k-prototypes to
+solve a mix type problem involved too much CPU power, as the number of clusters was high (230).
 
 # kmodes explanation:
 
