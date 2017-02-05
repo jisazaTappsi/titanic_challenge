@@ -7,7 +7,7 @@ def get_subset_survival_probability(sub_set):
 	:return: probability, value between 0 and 1.
 	"""
 	survivors = sub_set[sub_set.Survived == 1]  # filter by survivors
-	return len(survivors) / (len(sub_set))  # get quotient between survivors and population of sub_set.
+	return float(len(survivors)) / float(len(sub_set))  # get quotient between survivors and population of sub_set.
 
 
 def get_sex_survival_probability(data_set, sex):
