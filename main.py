@@ -11,6 +11,7 @@ data_set = pd.read_csv('./titanicData.csv')
 fields = list(data_set.columns.values)
 fields.remove('PassengerId')
 
+"""
 for field in fields:
 
 	print(data_set[field].value_counts())
@@ -18,7 +19,7 @@ for field in fields:
 	# count nan
 	print('total count:' + str(len(data_set[field])))
 	#print('total nan:' + str(sum([1 for x in list(df[field]) if x == np.nan])))
-
+"""
 
 class_survival = survival.get_class_survival_dict(data_set)
 
