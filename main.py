@@ -1,13 +1,17 @@
 import pandas as pd
 import survival
 import family
+import sys
+
+# reads the data_path as a command line arguments.
+data_path = sys.argv[1]
 
 # reads file from csv and converts it to DataFrame
-data_set = pd.read_csv('./titanicData.csv')
+data_set = pd.read_csv(data_path)
 
 # extract LastName for family use.
 data_set['LastName'] = data_set['Name'].apply(lambda name: name.split(',')[0])
-data_set = data_set.sort(['LastName'])
+data_set = data_set.sort_values(by=['LastName'])
 
 # Class probabilities
 class_survival = survival.get_class_survival_dict(data_set)
