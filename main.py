@@ -1,28 +1,16 @@
 import pandas as pd
-import numpy as np
 import survival
+import family
 
 # reads file from csv and converts it to DataFrame
 data_set = pd.read_csv('./titanicData.csv')
 
+# extract LastName for family use.
+data_set['LastName'] = data_set['Name'].apply(lambda name: name.split(',')[0])
+data_set = data_set.sort(['LastName'])
 
-# see unique values and possible missing values of dataframe
-
-fields = list(data_set.columns.values)
-fields.remove('PassengerId')
-
-"""
-for field in fields:
-
-	print(data_set[field].value_counts())
-
-	# count nan
-	print('total count:' + str(len(data_set[field])))
-	#print('total nan:' + str(sum([1 for x in list(df[field]) if x == np.nan])))
-"""
-
+# Class probabilities
 class_survival = survival.get_class_survival_dict(data_set)
-
 print("""Probabilities of Survival:
 First Class: {class1}
 Second Class: {class2}
@@ -34,8 +22,8 @@ The {survivors} class had the highest survival chance.
            survivors=survival.get_survivors(class_survival)))
 
 
+# Sex probabilities
 sex_survival = survival.get_sex_survival_dict(data_set)
-
 print("""Probabilities of Survival:
 Female: {female}
 Male: {male}
@@ -43,3 +31,10 @@ The {survivors} gender had the highest survival chance.
 """.format(female=sex_survival['female'],
            male=sex_survival['male'],
            survivors=survival.get_survivors(sex_survival)))
+
+
+sample_family = family.print_clusters(data_set)
+
+print("""One of the families that traveled in the Titanic were the {last_name}:
+{names}
+""".format(last_name=list(sample_family['LastName'])[0], names=family.get_names(sample_family)))

@@ -1,13 +1,4 @@
-
-
-def get_subset_survival_probability(sub_set):
-	"""
-	Gets the survival probability after a first filter has been applied to data
-	:param sub_set: data set after filter (eg class or sex)
-	:return: probability, value between 0 and 1.
-	"""
-	survivors = sub_set[sub_set.Survived == 1]  # filter by survivors
-	return float(len(survivors)) / float(len(sub_set))  # get quotient between survivors and population of sub_set.
+from util import get_subset_survival_probability
 
 
 def get_sex_survival_probability(data_set, sex):
